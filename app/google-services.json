@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "384306612433",
+    "project_id": "internet-banking-fc8cd",
+    "storage_bucket": "internet-banking-fc8cd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:384306612433:android:b6f9b3371415f88a651df0",
+        "android_client_info": {
+          "package_name": "com.example.internetbanking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3nfRTG-9AeJgs5VpPdGV5M9x5cPdwYWA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
