@@ -12,7 +12,7 @@ fun OfficerHome(
     officerViewModel: OfficerViewModel,
     navController: NavHostController
 ) {
-
+    
 }
 
 @Preview(

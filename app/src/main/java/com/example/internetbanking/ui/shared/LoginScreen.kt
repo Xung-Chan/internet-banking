@@ -1,5 +1,6 @@
 package com.example.internetbanking.ui.shared
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,10 +20,10 @@ import androidx.compose.material.icons.filled.HideSource
 import androidx.compose.material.icons.filled.LockPerson
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.RemoveRedEye
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -39,7 +40,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -51,8 +52,9 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.internetbanking.R
 import com.example.internetbanking.ui.theme.custom_dark_green
-import com.example.internetbanking.ui.theme.custom_light_green
+import com.example.internetbanking.ui.theme.custom_light_green2
 import com.example.internetbanking.ui.theme.custom_mint_green
 import com.example.internetbanking.viewmodels.LoginViewModel
 
@@ -81,7 +83,11 @@ fun LoginScreen(
                     .fillMaxWidth()
                     .fillMaxHeight(0.3f)
             ) {
-
+                Image(
+                    painter = painterResource(R.drawable.logo_1),
+                    contentDescription = "Leafy Bank",
+                    modifier = Modifier.fillMaxSize()
+                )
             }
             Box(
                 modifier = Modifier
@@ -109,10 +115,10 @@ fun LoginScreen(
                         .fillMaxSize()
                 ) {
                     Text(
-                        text = "WELCOME TO SACOBANK",
+                        text = "WELCOME! PLEASE LOG IN",
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
-                        color = custom_light_green
+                        color = custom_dark_green
                     )
                     Spacer(modifier = Modifier.height(20.dp))
                     LoginTextField(
@@ -153,7 +159,7 @@ fun LoginScreen(
                         ),
                         modifier = Modifier
                             .height(50.dp)
-                            .fillMaxWidth(0.9f)
+                            .fillMaxWidth(0.8f)
                     ) {
                         Text(
                             text = "Sign In",
@@ -176,7 +182,7 @@ fun LoginTextField(
     contentDesc: String,
     keyboardOptions: KeyboardOptions,
     modifier: Modifier = Modifier,
-    isContentShowing: Boolean = false,
+    isContentShowing: Boolean = true,
     onShowPasswordIconClick: () -> Unit = {}
 ) {
     OutlinedTextField(
@@ -203,15 +209,15 @@ fun LoginTextField(
                     ) {
                         if (isContentShowing) {
                             Icon(
-                                imageVector = Icons.Filled.RemoveRedEye,
+                                imageVector = Icons.Filled.Visibility,
                                 contentDescription = "Show Password",
                                 tint = Color.Gray,
                                 modifier = Modifier.padding(0.dp)
                             )
                         } else {
                             Icon(
-                                imageVector = Icons.Filled.HideSource,
-                                contentDescription = "Show Password",
+                                imageVector = Icons.Filled.VisibilityOff,
+                                contentDescription = "Hide Password",
                                 tint = Color.Gray
                             )
                         }
@@ -241,7 +247,7 @@ fun LoginTextField(
         ),
         singleLine = true,
         modifier = modifier
-            .fillMaxWidth(0.9f)
+            .fillMaxWidth(0.8f)
     )
 }
 
