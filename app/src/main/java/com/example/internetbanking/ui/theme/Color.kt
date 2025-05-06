@@ -32,6 +32,9 @@ object GradientColors {
     )
 
     val GreenRipple = Brush.linearGradient(
-        colors = listOf(custom_dark_green, custom_light_green1, custom_dark_green, custom_light_green1, custom_dark_green)
+        colors = listOf(
+            custom_dark_green, custom_dark_green, custom_light_green1,
+            custom_dark_green, custom_dark_green, custom_light_green1
+        )
     )
 }

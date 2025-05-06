@@ -2,7 +2,9 @@ package com.example.internetbanking.ui.officer
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,8 +18,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Logout
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -33,10 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -46,7 +43,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.internetbanking.R
 import com.example.internetbanking.ui.shared.GradientBackground
 import com.example.internetbanking.ui.theme.GradientColors
-import com.example.internetbanking.ui.theme.custom_light_green2
+import com.example.internetbanking.ui.theme.custom_dark_green
 import com.example.internetbanking.ui.theme.custom_mint_green
 import com.example.internetbanking.viewmodels.OfficerViewModel
 
@@ -79,7 +76,7 @@ fun OfficerHome(
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.Logout,
                             contentDescription = "Logout",
-                            tint = custom_light_green2
+                            tint = custom_mint_green
                         )
                     }
                 },
@@ -97,21 +94,21 @@ fun OfficerHome(
         Column(
             modifier = Modifier
                 .padding(innerPadding)
-                .padding(20.dp)
                 .fillMaxSize()
         ) {
             GradientBackground(
                 modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxHeight(0.1f)
+                    .padding(vertical = 16.dp, horizontal = 36.dp)
+                    .fillMaxHeight(0.15f)
                     .clip(
                         shape = RoundedCornerShape(16.dp)
                     )
             ) {
                 Column(
+                    verticalArrangement = Arrangement.Center,
                     modifier = Modifier
                         .padding(20.dp)
-                        .fillMaxWidth()
+                        .fillMaxSize()
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -121,9 +118,140 @@ fun OfficerHome(
                             text = "Officer:",
                             fontSize = 16.sp,
                             color = Color.White,
-                            modifier = Modifier.width(60.dp)
+                            modifier = Modifier.width(100.dp)
+                        )
+                        Text(
+                            // text = officerUiState.officer.fullName,
+                            text = "Nguyễn Văn A",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White,
+                            modifier = Modifier.fillMaxWidth()
                         )
                     }
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Start
+                    ) {
+                        Text(
+                            text = "Account ID:",
+                            fontSize = 16.sp,
+                            color = Color.White,
+                            modifier = Modifier.width(100.dp)
+                        )
+                        Text(
+                            // text = officerUiState.officer.userId,
+                            text = "0123456789",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
+                }
+            }
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .background(
+                        brush = GradientColors.GreenDarkToLight
+                    )
+            ) {
+                Text(
+                    text = "FEATURES",
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
+            }
+            Column(
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(vertical = 16.dp, horizontal = 20.dp)
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier
+                        .padding(horizontal = 10.dp)
+                        .fillMaxWidth()
+                ) {
+                    Column(
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .width(150.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.create_customer),
+                            contentDescription = "Create customer",
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(16.dp))
+                                .clickable {    // TODO: CREATE CUSTOMER EVENT
+
+                                }
+                        )
+                        Spacer(modifier = Modifier.height(5.dp))
+                        Text(
+                            text = "Create Customer",
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = custom_dark_green
+                        )
+                    }
+                    Column(
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .width(150.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.edit_customer),
+                            contentDescription = "Edit customer",
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(16.dp))
+                                .clickable {    // TODO: EDIT CUSTOMER EVENT
+
+                                }
+                        )
+                        Spacer(modifier = Modifier.height(5.dp))
+                        Text(
+                            text = "Edit Customer",
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = custom_dark_green
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+                Column(
+                    verticalArrangement = Arrangement.Top,
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier
+                        .padding(horizontal = 10.dp)
+                        .fillMaxSize()
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.edit_rates),
+                        contentDescription = "Edit Profitable rates",
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(16.dp))
+                            .clickable {    // TODO: EDIT PROFITABLE RATES
+
+                            }
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+                    Text(
+                        text = "Edit Profitable Rates",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = custom_dark_green
+                    )
                 }
             }
         }
