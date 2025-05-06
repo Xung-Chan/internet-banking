@@ -1,5 +1,6 @@
 package com.example.internetbanking.ui.theme
 
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
 // Default
@@ -23,3 +24,14 @@ val custom_dark_yellow = Color(0xFFD5A021)
 val custom_cream_white = Color(0xFFF1FFFA)
 val custom_light_red = Color(0xFFBA274A)
 val custom_dark_red = Color(0xFF841C26)
+
+// Custom Gradient Color
+object GradientColors {
+    val GreenDarkToLight = Brush.linearGradient(
+        colors = listOf(custom_dark_green, custom_light_green1, custom_light_green2)
+    )
+
+    val GreenRipple = Brush.linearGradient(
+        colors = listOf(custom_dark_green, custom_light_green1, custom_dark_green, custom_light_green1, custom_dark_green)
+    )
+}

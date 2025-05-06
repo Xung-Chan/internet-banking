@@ -12,18 +12,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material.icons.filled.HideSource
 import androidx.compose.material.icons.filled.LockPerson
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.RemoveRedEye
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -41,6 +38,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -53,8 +51,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.internetbanking.R
+import com.example.internetbanking.ui.theme.GradientColors
 import com.example.internetbanking.ui.theme.custom_dark_green
-import com.example.internetbanking.ui.theme.custom_light_green2
 import com.example.internetbanking.ui.theme.custom_mint_green
 import com.example.internetbanking.viewmodels.LoginViewModel
 
@@ -67,103 +65,103 @@ fun LoginScreen(
     var passwordInput by remember { mutableStateOf("") }
     var isPasswordShowing by remember { mutableStateOf(false) }
 
-    Scaffold(
-        containerColor = custom_dark_green
-    ) { innerPadding ->
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
+    GradientBackground(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        Scaffold(
+            containerColor = Color.Transparent,
             modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-        ) {
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(0.3f)
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.logo_1),
-                    contentDescription = "Leafy Bank",
-                    modifier = Modifier.fillMaxSize()
-                )
-            }
-            Box(
+                .systemBarsPadding()
+        ) { innerPadding ->
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(
-                        color = custom_mint_green,
-                        shape = RoundedCornerShape(
-                            topStart = 30.dp,
-                            topEnd = 30.dp
-                        )
-                    )
-                    .clip(
-                        RoundedCornerShape(
-                            topStart = 30.dp,
-                            topEnd = 30.dp
-                        )
-                    )
+                    .padding(innerPadding)
             ) {
-                Column(
-                    verticalArrangement = Arrangement.Top,
-                    horizontalAlignment = Alignment.CenterHorizontally,
+                Box(
+                    contentAlignment = Alignment.Center,
                     modifier = Modifier
-                        .padding(vertical = 20.dp)
-                        .padding(top = 20.dp)
-                        .fillMaxSize()
+                        .fillMaxWidth()
+                        .fillMaxHeight(0.3f)
                 ) {
-                    Text(
-                        text = "WELCOME! PLEASE LOG IN",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = custom_dark_green
+                    Image(
+                        painter = painterResource(R.drawable.logo_1),
+                        contentDescription = "Leafy Bank",
+                        modifier = Modifier.fillMaxSize()
                     )
-                    Spacer(modifier = Modifier.height(20.dp))
-                    LoginTextField(
-                        value = idInput,
-                        onValueChange = { idInput = it },
-                        label = "Account ID",
-                        leadingIcon = Icons.Filled.Person,
-                        onTrailingIconClick = { idInput = "" },
-                        contentDesc = "User's ID",
-                        keyboardOptions = KeyboardOptions(
-                            imeAction = ImeAction.Next
+                }
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(
+                            color = custom_mint_green,
+                            shape = RoundedCornerShape(
+                                topStart = 30.dp,
+                                topEnd = 30.dp
+                            )
                         )
-                    )
-                    Spacer(modifier = Modifier.height(10.dp))
-                    LoginTextField(
-                        value = passwordInput,
-                        onValueChange = { passwordInput = it },
-                        label = "Password",
-                        leadingIcon = Icons.Filled.LockPerson,
-                        onTrailingIconClick = { passwordInput = "" },
-                        onShowPasswordIconClick = { isPasswordShowing = !isPasswordShowing },
-                        contentDesc = "User's Password",
-                        keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Password,
-                            imeAction = ImeAction.Done
-                        ),
-                        isContentShowing = isPasswordShowing
-                    )
-                    Spacer(modifier = Modifier.height(40.dp))
-                    Button(
-                        onClick = {
-
-                        },
-                        shape = RoundedCornerShape(12.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            contentColor = Color.White,
-                            containerColor = custom_dark_green
-                        ),
+                        .clip(
+                            RoundedCornerShape(
+                                topStart = 30.dp,
+                                topEnd = 30.dp
+                            )
+                        )
+                ) {
+                    Column(
+                        verticalArrangement = Arrangement.Top,
+                        horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier
-                            .height(50.dp)
-                            .fillMaxWidth(0.8f)
+                            .padding(vertical = 20.dp)
+                            .padding(top = 20.dp)
+                            .fillMaxSize()
                     ) {
                         Text(
-                            text = "Sign In",
-                            fontSize = 20.sp
+                            text = "WELCOME! PLEASE LOG IN",
+                            style = TextStyle(
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Bold,
+                                brush = GradientColors.GreenDarkToLight
+                            ),
+                        )
+                        Spacer(modifier = Modifier.height(20.dp))
+                        LoginTextField(
+                            value = idInput,
+                            onValueChange = { idInput = it },
+                            label = "Account ID",
+                            leadingIcon = Icons.Filled.Person,
+                            onTrailingIconClick = { idInput = "" },
+                            contentDesc = "User's ID",
+                            keyboardOptions = KeyboardOptions(
+                                imeAction = ImeAction.Next
+                            )
+                        )
+                        Spacer(modifier = Modifier.height(10.dp))
+                        LoginTextField(
+                            value = passwordInput,
+                            onValueChange = { passwordInput = it },
+                            label = "Password",
+                            leadingIcon = Icons.Filled.LockPerson,
+                            onTrailingIconClick = { passwordInput = "" },
+                            onShowPasswordIconClick = { isPasswordShowing = !isPasswordShowing },
+                            contentDesc = "User's Password",
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Password,
+                                imeAction = ImeAction.Done
+                            ),
+                            isContentShowing = isPasswordShowing
+                        )
+                        Spacer(modifier = Modifier.height(40.dp))
+                        GreenGradientButton(
+                            onButtonClick = {
+
+                            },
+                            buttonText = "Sign In",
+                            modifier = Modifier
+                                .height(50.dp)
+                                .fillMaxWidth(0.8f)
                         )
                     }
                 }
@@ -252,8 +250,7 @@ fun LoginTextField(
 }
 
 @Preview(
-    showBackground = true,
-    showSystemUi = true
+    showBackground = true
 )
 @Composable
 fun ScreenPreview(){
